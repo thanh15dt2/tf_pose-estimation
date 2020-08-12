@@ -419,10 +419,13 @@ class TfPoseEstimator:
             print('key', human.body_parts)
             x_vector = []
             y_vector = []
+            number_keypoint = []
             for i in range(common.CocoPart.Background.value):
                 if i not in human.body_parts.keys():
                     continue
                 body_part = human.body_parts[i]
+                number_keypoint.append(body_part.part_idx)
+
                 x_vector.append(body_part.x)
                 y_vector.append(body_part.y)
                 center = (int(body_part.x * image_w + 0.5), int(body_part.y * image_h + 0.5))
@@ -439,7 +442,7 @@ class TfPoseEstimator:
                 cv2.line(npimg, centers[pair[0]], centers[pair[1]], common.CocoColors[pair_order], 3)
         
         print(x_vector)
-        return npimg, x_vector, y_vector
+        return npimg, x_vector, y_vector, number_keypoint
 
 
     def _get_scaled_img(self, npimg, scale):

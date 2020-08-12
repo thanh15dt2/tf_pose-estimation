@@ -74,10 +74,13 @@ class Scoring():
             sys.exit(-1)
         t = time.time()
         humans = e.inference(image, resize_to_default=(w > 0 and h > 0), upsample_size=self.resize_out_ratio)
+        np_humans = np.asarray(humans)
+        print('----------------------humans {}'.format(humans[0]))
+        
         elapsed = time.time() - t
         logger.info('inference image: %s in %.4f seconds.' % (image, elapsed))
-        image, x_vector, y_vector = TfPoseEstimator.draw_humans(image, humans, imgcopy=False)
+        # draw keypoint and line
+        image, x_vector, y_vector, number_keypoint = TfPoseEstimator.draw_humans(image, humans, imgcopy=False)
         # score
-
-        return image, x_vector,  y_vector
+        return image, x_vector, y_vector, number_keypoint
 
