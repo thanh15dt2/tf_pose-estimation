@@ -27,10 +27,11 @@ def border_resize(image, output_size=360):
 
 if __name__ == "__main__":
 
-    # path_a = '/home/dsoft/Music/me/project/image_true/0.png'
-    # img = cv2.imread(path)
+    # path_a = '/home/dsoft/Music/me/project/image_true/7.png'
+    # img = cv2.imread(path_a)
     # size = tuple(img.shape[:2])
-    # # border_resize(img)
+    # image = border_resize(img)
+    # cv2.imwrite(path_a, image)
 
     scoring.score_infer(path)
 
